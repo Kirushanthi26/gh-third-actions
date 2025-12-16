@@ -1,21 +1,21 @@
-name: Deployment
-on: push
+name: Deployment #workflow or pipeline name
+on: push #event
 jobs:
     lint-check:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-latest #runner
         steps:
-            - name: Get the code
+            - name: Get the code # install the code inside runner machine
               uses: actions/checkout@v6
-            - name: Setup Node 
+            - name: Setup Node #install node js 
               uses: actions/setup-node@v6
               with:
                 node-version: 24
-            - name: install dependency 
+            - name: install dependency # install dependencies
               run: npm ci
-            - name: Check lint
+            - name: Check lint #check lint 
               run: npm run lint
     test:
-        needs: lint-check
+        needs: lint-check #after lint-check, run the test
         runs-on: ubuntu-latest
         steps:
             - name: Get the code
@@ -26,7 +26,7 @@ jobs:
                 node-version: 24
             - name: install dependency 
               run: npm ci
-            - name: Run test
+            - name: Run test #run test cases
               run: npm test
     deployment:
         needs: test
@@ -40,5 +40,7 @@ jobs:
                 node-version: 24
             - name: install dependency 
               run: npm ci
-            - name: deploy
+            - name: Build code #build project 
+              run: npm run build 
+            - name: deploy #deployment 
               run: echo "deploy....."
