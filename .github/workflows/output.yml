@@ -6,5 +6,5 @@ jobs:
         steps: 
             - name: Output the event details
               run: echo "${{toJSON(github.event)}}"
-            - name: Output issue
+            - name: Output repo
               run: echo "${{toJSON(github.repository)}}"
