@@ -8,3 +8,6 @@ jobs:
               run: echo "${{toJSON(github.event)}}"
             - name: Output repo
               run: echo "${{toJSON(github.repository)}}"
+
+
+# when even anyone create new issue in side the github then it will trigger
